@@ -229,12 +229,12 @@
   <h3>Open Data</h3>
     <ul>
     <li>Daten (COG, GPKG) &amp; Metadaten auf <a href="https://data.mundialis.de">https://data.mundialis.de</a></li>
-    <li>Datensätze auch auf <a href="https://zenodo.org/search?page=1&size=200&q=mundialis">https://zenodo.org</a></li>
+    <li>Datensätze auch auf <a href="https://zenodo.org/search?page=1&size=200&q=mundialis">https://zenodo.org</a> (CITATION.cff API upload)</li>
     </ul>
   <br><br><br>
   <h3>Tutorials</h3>
     <ul>
-    <li>Jupyter notebooks auf <a href="https://github.com/mundialis/">GitHub</a></li>
+    <li>Jupyter notebooks auf GitHub: <a href="https://github.com/actinia-org/actinia-jupyter/">actinia</a> &amp; <a href="https://github.com/mundialis/">mundialis</a></li>
   </ul>
   </textarea>
 </section>
@@ -257,12 +257,15 @@
     <img src="img/rvr_buildings.png" alt="Gebäudeextraktion" class="stretch">
     <ul>
         <li>Für (Stadt)Planungzwecke ist es essentiell, genaue Daten des aktuellen Gebäudebestandes zu haben.</li>
-        <li>Die Datensätze der "Hausumringe" stehen nicht in allen Bundesländer als offene Daten zur Verfügung.</li>
-        <li>Ziel: automatisierte Extraktion aus Luftbildern und ggf. weiteren aktuellen Quellen (Lidar, nDOM, ...)</li>
-        <li>Extraktion von Gebäuden</li>
-        <li>Extraktion von begrünten Dächern</li>
-        <li>Vortrag: "Gebäudedetektion auf Basis von Luftbildern und Punktwolken des Regionalverbands Ruhr" - <a href="https://pretalx.com/fossgis2023/talk/ZY9RXM/">https://pretalx.com/fossgis2023/talk/ZY9RXM/</a></li>
-
+        <ul>
+            <li>Die Datensätze der "Hausumringe" stehen nicht in allen Bundesländer als offene Daten zur Verfügung.</li>
+            <li>Ziel: automatisierte Extraktion aus Luftbildern und ggf. weiteren aktuellen Quellen (Lidar, nDOM, ...)</li>
+        </ul>
+        <li>Extraktion von Gebäuden und von begrünten Dächern</li>
+        <ul>
+            <li>Vortrag: "Gebäudedetektion auf Basis von Luftbildern und Punktwolken des Regionalverbands Ruhr" <br>
+            - <a href="https://pretalx.com/fossgis2023/talk/ZY9RXM/">https://pretalx.com/fossgis2023/talk/ZY9RXM/</a></li>
+        </ul>
 <!--
     <li>Software schon auch GitHub, aber aktuell noch "privates" Repo (<a href="https://github.com/mundialis/rvr_interface">https://github.com/mundialis/rvr_interface</a>)</li>
 -->
@@ -274,7 +277,7 @@
  <h2>Erkennung von Einzelbäumen (Teaser)</h2>
     <img src="img/nrw_bahn_einzelbaumerkennung.png" alt="Einzelbaumerkennung" class="stretch">
     <ul>
-        <li>Relevanz: siehe Stadtklima, Verkehrsicherungspflicht, ...</li>
+        <li>Relevanz: siehe Stadtklima, Verkehrsicherungspflicht, Biomassenschätzungen, ...</li>
         <li>Vortrag: "Automatisierte Detektion von Baumstandorten in der Metropole Ruhr" - <a href="https://pretalx.com/fossgis2023/talk/LAPFZU/">https://pretalx.com/fossgis2023/talk/LAPFZU/</a></li>
     </ul>
 </section>
@@ -285,14 +288,15 @@
          data-background-image="img/cop_dem30m_shaded_berlin.png"
          data-background-opacity="0.3">
     <textarea data-template>
-    <h2>Copernicus DEM (COP-DEM) GLO-30: Global Elevation Data</h2>
+    <h2><a href="https://data.mundialis.de/geonetwork/srv/eng/catalog.search#/search?resultType=details&sortBy=relevance&any=Copernicus%20DEM&from=1&to=20&fast=index&_content_type=json">Copernicus DEM (COP-DEM) GLO-30:</a><br>
+    Global Elevation Data</h2>
     <img src="img/cop-dem_30m_south_america.jpg" alt="COP-DEM 30 South America" width="40%">
     <!-- <img src="img/cop_dem30m_shaded_berlin.png" alt="COP-DEM 30 shaded relief Berlin" class="stretch"> -->
     <h3>Von mundialis GIS-freundlich aufbereitet</h3>
     <ul>
         <li>Rechteckige Pixel -&gt; quadratische Pixel</li>
-        <li>Zuschnitt auf Europa</li>
         <li>Auslieferung in COG Format</li>
+        <li>(Zuschnitt auf Europa)</li>
     </ul>
 <!--
       Quellen in der Produktion von COP-DEM: Airbus WorldDEM infilled on a local basis with the following DEMs: ASTER, SRTM90, SRTM30, SRTM30plus, GMTED2010, TerraSAR-X Radargrammetric DEM, ALOS World 3D-30m.
@@ -302,14 +306,14 @@
 
 
 <section>
-  <h2>Höher aufgelöste Klimadaten-Zeitreihen</h2>
+  <h2>Klimadaten-Zeitreihen in höherer Auflösung</h2>
     <img src="img/era5_screenhot_t2m_min.png" alt=ERA5 T2m min daily" class="stretch">
   <ul>
-    <li>Zeitreihen kontinentaler ERA5-Land Rasterdaten, die wir von 9&nbsp;km Auflösung auf 1 km unter Verwendung der CHELSA-Daten verbessert haben:</li>
+    <li>Zeitreihen kontinentaler <a href="https://data.mundialis.de/geonetwork/srv/eng/catalog.search#/search?any=ERA5">ERA5-Land</a> Rasterdaten, die wir von 9&nbsp;km Auflösung auf 1 km unter Verwendung der CHELSA-Daten verbessert haben:</li>
     <ul>
-        <li>Temperatur (2000- 2021)</li>
-        <li>Niederschlag (2000- 2021)</li>
-        <li>Relative Luftfeuchtigkeit (2000- 2021)- berechnet nach <it>Wright 1997</it></li>
+        <li>Temperatur (2000 - 2021)</li>
+        <li>Niederschlag (2000 - 2021)</li>
+        <li>Relative Luftfeuchtigkeit (2000 - 2021) - nach <it>Wright 1997</it></li>
     </ul>
     <li>Motivation: Berechnung von Hitzeinsel-Risiko, Ableitung von regionalen Trends, menschliches Wohlbefinden (Thermoregulation des Körpers)</li>
 </ul>
