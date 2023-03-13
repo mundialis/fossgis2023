@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <title>data.mundialis.de: eine Sammlung neuer offener Datenprodukte!</title>
+
+        <meta name="description" content="data.mundialis.de: eine Sammlung neuer offener Datenprodukte! Talk 2023">
+        <meta name="author" content="Markus Neteler und mundialis GmbH & Co. KG">
+
+        <link rel="stylesheet" href="dist/reset.css">
+        <link rel="stylesheet" href="dist/reveal.css">
+        <link rel="stylesheet" href="css/theme/osgeo.css" id="theme">
+        <link rel="stylesheet" href="css/nouislider.min.css" id="slide">
+
+        <!-- Theme used for syntax highlighted code -->
+        <link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+        <!-- For chalkboard plugin -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+        <script>
+            if( window.location.search.match( /print-pdf/gi ) ) {
+                var link = document.createElement( 'link' );
+                link.rel = 'stylesheet';
+                link.type = 'text/css';
+                link.href = 'css/print/pdf.css';
+                document.getElementsByTagName( 'head' )[0].appendChild( link );
+            }
+        </script>
+
+<!--        <link href="https://fonts.googleapis.com/css?family=Miriam+Libre" rel="stylesheet">-->
+<style>
+/* miriam-libre-regular - latin */
+@font-face {
+  font-family: 'Miriam Libre';
+  font-style: normal;
+  font-weight: 400;
+  src: url('lib/font/miriam-libre/miriam-libre-v1-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local('Miriam Libre'), local('MiriamLibre-Regular'),
+       url('lib/font/miriam-libre/miriam-libre-v1-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('lib/font/miriam-libre/miriam-libre-v1-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('lib/font/miriam-libre/miriam-libre-v1-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('lib/font/miriam-libre/miriam-libre-v1-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('lib/font/miriam-libre/miriam-libre-v1-latin-regular.svg#MiriamLibre') format('svg'); /* Legacy iOS */
+}
+
+/* miriam-libre-700 - latin */
+@font-face {
+  font-family: 'Miriam Libre';
+  font-style: normal;
+  font-weight: 700;
+  src: url('lib/font/miriam-libre/miriam-libre-v1-latin-700.eot'); /* IE9 Compat Modes */
+  src: local('Miriam Libre Bold'), local('MiriamLibre-Bold'),
+       url('lib/font/miriam-libre/miriam-libre-v1-latin-700.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('lib/font/miriam-libre/miriam-libre-v1-latin-700.woff2') format('woff2'), /* Super Modern Browsers */
+       url('lib/font/miriam-libre/miriam-libre-v1-latin-700.woff') format('woff'), /* Modern Browsers */
+       url('lib/font/miriam-libre/miriam-libre-v1-latin-700.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('lib/font/miriam-libre/miriam-libre-v1-latin-700.svg#MiriamLibre') format('svg'); /* Legacy iOS */
+}
+
+
+/* sintony-regular - latin */
+@font-face {
+  font-family: 'Sintony';
+  font-style: normal;
+  font-weight: 400;
+  src: url('lib/font/sintony/sintony-v4-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local('Sintony'),
+       url('lib/font/sintony/sintony-v4-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('lib/font/sintony/sintony-v4-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('lib/font/sintony/sintony-v4-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('lib/font/sintony/sintony-v4-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('lib/font/sintony/sintony-v4-latin-regular.svg#Sintony') format('svg'); /* Legacy iOS */
+}
+
+/* sintony-700 - latin */
+@font-face {
+  font-family: 'Sintony';
+  font-style: normal;
+  font-weight: 700;
+  src: url('lib/font/sintony/sintony-v4-latin-700.eot'); /* IE9 Compat Modes */
+  src: local('Sintony Bold'), local('Sintony-Bold'),
+       url('lib/font/sintony/sintony-v4-latin-700.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('lib/font/sintony/sintony-v4-latin-700.woff2') format('woff2'), /* Super Modern Browsers */
+       url('lib/font/sintony/sintony-v4-latin-700.woff') format('woff'), /* Modern Browsers */
+       url('lib/font/sintony/sintony-v4-latin-700.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('lib/font/sintony/sintony-v4-latin-700.svg#Sintony') format('svg'); /* Legacy iOS */
+}
+
+.reveal i.fa {
+    font-family:FontAwesome;
+    font-style: normal;
+}
+
+.reveal li > ul {
+    font-size: 85%;
+    line-height: 110%;
+  }
+
+.reveal small {
+  display: inline-block;
+  font-size: smaller;
+  line-height: 1.2em;
+  vertical-align: baseline;
+  margin: 0.1em; }
+
+.reveal small * {
+  vertical-align: baseline; }
+
+.reveal .credit {
+  font-size: small;
+  color: gray;
+  margin: 0.1em;
+}
+
+.reveal .right, .reveal .textimg > img, .reveal .textimg > video, .reveal .textimg > iframe, .reveal .imgtext > p, .reveal .imgtext > ul, .reveal .imgtext > ol, .reveal .imgtext > div {
+    float: right;
+    text-align: left;
+    max-width: 47%;
+}
+
+.reveal .left, .reveal .imgtext > img, .reveal .imgtext > video, .reveal .imgtext > iframe, .reveal .textimg > p, .reveal .textimg > ul, .reveal .textimg > ol, .reveal .textimg > div {
+    float: left;
+    text-align: left;
+    max-width: 47%;
+}
+</style>
+</head>
+
+<body>
+      <div class="reveal">
+      <div class="slides">
+
+<!-- ################# CONTENT ################# -->
+
+<section>
+    <h1>data.mundialis.de:<br> eine Sammlung neuer offener Datenprodukte!</h1>
+    <p style="margin-top: 0.5em">
+        <a href="https://www.mundialis.de/en/neteler/">Markus Neteler</a>
+        <br>
+        &amp; mundialis GmbH & Co. KG
+    </p>
+
+    <img src="img/mundialis_logo.png" alt="mundialis logo" width="20%">
+    <p><small><a href="https://fossgis-konferenz.de/2023/">FOSSGIS 2023</a></small></p>
+    <p><small><a href="https://htmlpreview.github.io/?https://github.com/neteler/grass-gis-talks-markus/blob/main/osgeo_slovenia_grassgis2022.html#/">github.com/neteler/grass-gis-talks-markus/  - FIXME</a></small></p>
+</section>
+
+<!--
+<section>
+    <h2>Über den Sprecher...</h2>
+    <br>
+    <ul>
+        <li> Mitbegründer und Senior Consultant bei mundialis, Bonn (DE)</li>
+        <img class="bio-img" src="img/markus_round.png" alt="Pic of Markus Neteler">
+        <li> Seit 2016 in Bonn, Deutschland @ mundialis</li>
+        <li> Jahrelang als Wissenschaftler in Trento, Italien, gelebt</li>
+        <li> Seit 1997 aktiv im GRASS GIS Projekt</li>
+        <li> Mitbegründer von OSGeo, GFOSS.it und FOSSGIS e.V.</li>
+    </ul>
+    <p align="right" style="font-size:18px"><a href="https://www.mundialis.de/neteler/">https://www.mundialis.de/neteler/</a></p>
+</section>
+
+<section>
+    <h2>About the presenter...</h2>
+    <br>
+    <ul>
+        <li>Co-founder and senior consultant at mundialis, Bonn (DE)</li>
+        <img class="bio-img" src="img/markus_round.png" alt="Pic of Markus Neteler">
+        <li>Years as a researcher in Trento, Italy</li>
+        <li>Since 2016 in Bonn, Germany @ mundialis</li>
+        <li>Since 1997 active in the <a href="https://grass.osgeo.org/">GRASS GIS</a> project</li>
+        <li> Co-founder of <a href="https://www.osgeo.org/">OSGeo</a>, GFOSS.it and FOSSGIS e.V.</li>
+    </ul>
+    <p align="right" style="font-size:18px"><a href="https://www.mundialis.de/neteler/">https://www.mundialis.de/neteler/</a></p>
+</section>
+
+<section data-markdown
+         data-background-image="https://grass.osgeo.org/images/logos/banner.jpg"
+         data-background-opacity="0.6">
+    <textarea data-template>
+    ## Overview of this talk
+        - For newcomers: which GRASS GIS?
+        - A better GUI experience in GRASS 8.2+
+        - Interfaces to other software
+        - Exciting new features in GRASS 8.2+
+        - GRASS GIS is ready for the cloud
+        - Community contributions
+        - Get involved
+    </textarea>
+</section>
+
+-->
+
+<section data-markdown
+         data-background-image="https://www.mundialis.de/wordpress/wp-content/uploads/2022/08/sentinel2a_kufra.jpg"
+         data-background-opacity="0.3">
+    <textarea data-template>
+    <h2>Motivation: Daten für informierte Entscheidungen</h2>
+    <ul>
+        <li>Stark wachsender Pool an freien "Rohdaten" (Sentinel-Satdaten, Lidar Punktwolken, Copernicus Climate Data Store, ...)</li>
+        <li>Verarbeitung ist komplex aufgrund von Volumen, speziellen Datenformaten, usw.</li>
+        <li>mundialis entwickelt, wissenschaftlich basiert, im Kontext von Kundenanforderungen Auswertungsmethoden</li>
+    </ul>
+    <br><br>
+    <h2>Prozessierung</h2>
+    <ul>
+        <li>GDAL, GRASS GIS, QGIS</li>
+        <li>actinia (cloud based geoprocessing engine)</li>
+    </ul>
+    </textarea>
+</section>
+
+
+<section data-markdown
+         data-background-image="img/jupyter_openNRW_crop.jpg"
+         data-background-opacity="0.2">
+  <textarea data-template>
+  <h2>Bereitstellung der Ergebnisse</h2>
+  <br><br>
+  <h3>Software (yes, FOSS!)</h3>
+    <ul>
+        <li> <a href="https://github.com/mundialis/">https://github.com/mundialis/</a> (> 60 repos)</li>
+        <li> <a href="https://github.com/actinia-org/">https://github.com/actinia-org/</a> (> 20 repos)</li>
+    </ul>
+  <br><br><br>
+  <h3>Open Data</h3>
+    <ul>
+    <li>Daten (COG, GPKG) &amp; Metadaten auf <a href="https://data.mundialis.de">https://data.mundialis.de</a></li>
+    <li>Datensätze auch auf <a href="https://zenodo.org/search?page=1&size=200&q=mundialis">https://zenodo.org</a></li>
+    </ul>
+  <br><br><br>
+  <h3>Tutorials</h3>
+    <ul>
+    <li>Jupyter notebooks auf <a href="https://github.com/mundialis/">GitHub</a></li>
+  </ul>
+  </textarea>
+</section>
+
+
+<section>
+    <h2>Landnutzungsklassifikation und Monitoring von Landnutzungsänderungen</h2>
+    <ul>
+        <li>LULC-Daten aus Sentinel-2 mit 6 Klassen,<br>
+            für 2016, 2019, 2020, 2021 (<a href="https://data.mundialis.de/geonetwork/srv/eng/catalog.search#/search?any=incora">GNOS-Suche</a>)</li>
+        <li>"Change detection" zwischen verschiedenen Karten</li>
+        <li>"incora" mFUND Projekt (FKZ: 19F2079C)</li>
+    </ul>
+    <img src="img/incora_GNOS.png" alt="GNOS: incora" width="65%">
+</section>
+
+
+<section>
+    <h2>Gebäudeextraktion (Teaser)</h2>
+    <img src="img/rvr_buildings.png" alt="Gebäudeextraktion" class="stretch">
+    <ul>
+        <li>Für (Stadt)Planungzwecke ist es essentiell, genaue Daten des aktuellen Gebäudebestandes zu haben.</li>
+        <li>Die Datensätze der "Hausumringe" stehen nicht in allen Bundesländer als offene Daten zur Verfügung.</li>
+        <li>Ziel: automatisierte Extraktion aus Luftbildern und ggf. weiteren aktuellen Quellen (Lidar, nDOM, ...)</li>
+        <li>Extraktion von Gebäuden</li>
+        <li>Extraktion von begrünten Dächern</li>
+        <li>Vortrag: "Gebäudedetektion auf Basis von Luftbildern und Punktwolken des Regionalverbands Ruhr" - <a href="https://pretalx.com/fossgis2023/talk/ZY9RXM/">https://pretalx.com/fossgis2023/talk/ZY9RXM/</a></li>
+
+<!--
+    <li>Software schon auch GitHub, aber aktuell noch "privates" Repo (<a href="https://github.com/mundialis/rvr_interface">https://github.com/mundialis/rvr_interface</a>)</li>
+-->
+    </ul>
+</section>
+
+
+<section>
+ <h2>Erkennung von Einzelbäumen (Teaser)</h2>
+    <img src="img/nrw_bahn_einzelbaumerkennung.png" alt="Einzelbaumerkennung" class="stretch">
+    <ul>
+        <li>Relevanz: siehe Stadtklima, Verkehrsicherungspflicht, ...</li>
+        <li>Vortrag: "Automatisierte Detektion von Baumstandorten in der Metropole Ruhr" - <a href="https://pretalx.com/fossgis2023/talk/LAPFZU/">https://pretalx.com/fossgis2023/talk/LAPFZU/</a></li>
+    </ul>
+</section>
+
+
+<!--  TODO: SRTM vs NASADEM vs COP-DSM -->
+<section data-markdown
+         data-background-image="img/cop_dem30m_shaded_berlin.png"
+         data-background-opacity="0.3">
+    <textarea data-template>
+    <h2>Copernicus DEM (COP-DEM) GLO-30: Global Elevation Data</h2>
+    <img src="img/cop-dem_30m_south_america.jpg" alt="COP-DEM 30 South America" width="40%">
+    <!-- <img src="img/cop_dem30m_shaded_berlin.png" alt="COP-DEM 30 shaded relief Berlin" class="stretch"> -->
+    <h3>Von mundialis GIS-freundlich aufbereitet</h3>
+    <ul>
+        <li>Rechteckige Pixel -&gt; quadratische Pixel</li>
+        <li>Zuschnitt auf Europa</li>
+        <li>Auslieferung in COG Format</li>
+    </ul>
+<!--
+      Quellen in der Produktion von COP-DEM: Airbus WorldDEM infilled on a local basis with the following DEMs: ASTER, SRTM90, SRTM30, SRTM30plus, GMTED2010, TerraSAR-X Radargrammetric DEM, ALOS World 3D-30m.
+-->
+    </textarea>
+</section>
+
+
+<section>
+  <h2>Höher aufgelöste Klimadaten-Zeitreihen</h2>
+    <img src="img/era5_screenhot_t2m_min.png" alt=ERA5 T2m min daily" class="stretch">
+  <ul>
+    <li>Zeitreihen kontinentaler ERA5-Land Rasterdaten, die wir von 9&nbsp;km Auflösung auf 1 km unter Verwendung der CHELSA-Daten verbessert haben:</li>
+    <ul>
+        <li>Temperatur (2000- 2021)</li>
+        <li>Niederschlag (2000- 2021)</li>
+        <li>Relative Luftfeuchtigkeit (2000- 2021)- berechnet nach <it>Wright 1997</it></li>
+    </ul>
+    <li>Motivation: Berechnung von Hitzeinsel-Risiko, Ableitung von regionalen Trends, menschliches Wohlbefinden (Thermoregulation des Körpers)</li>
+</ul>
+</section>
+
+<section>
+    <h1>Sprechen Sie uns an!</h1>
+
+    <h3>mundialis GmbH & Co. KG</h3>
+    <br>Kölnstraße 99
+    <br>53111 Bonn
+    <p>info@mundialis.de
+    <br>www.mundialis.de
+    <p><a href="https://data.mundialis.de">https://data.mundialis.de</a></p>
+    <br>
+    <a href="https://twitter.com/MundialisInfo"><i class="fa fa-twitter"></i>MundialisInfo</a>
+    <p>
+    <a href="https://fosstodon.org/@mundialis"><i class="fa fa-mastodon"></i>@mundialis</a><br>
+</section>
+
+<!--
+<section>
+    <h1>Thanks for your attention!!</h1>
+    <br>
+    <img src="img/grass_gis.svg" alt="GRASS GIS logo" width="20%">
+    <p><a href="https://grass.osgeo.org/">grass.osgeo.org</a></p>
+    <p></p>
+    <p><small><a href="https://htmlpreview.github.io/?https://github.com/neteler/grass-gis-talks-markus/blob/main/osgeo_slovenia_grassgis2022.html#/">github.com/neteler/grass-gis-talks-markus</a></small></p>
+    <br>
+    <a href="https://twitter.com/MarkusNeteler"><i class="fa fa-twitter"></i> MarkusNeteler</a><br>
+</section>
+
+-->
+
+<!-- ################# END CONTENT ################# -->
+
+        </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script src="plugin/math/math.js"></script>
+    <script src="plugin/chalkboard/plugin.js"></script>
+    <script>
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            hash: true,
+            // Display controls in the bottom right corner
+            controls: true,
+
+            // Display a presentation progress bar
+            progress: true,
+
+            center: true,
+
+            // Display the page number of the current slide
+            slideNumber: true,
+
+            // Enable the slide overview mode
+            overview: true,
+
+            // Turns fragments on and off globally
+            fragments: true,
+
+            // The "normal" size of the presentation, aspect ratio will be preserved
+            // when the presentation is scaled to fit different resolutions. Can be
+            // specified using percentage units.
+            // width: 960,
+            // height: 700,
+
+            // Factor of the display size that should remain empty around the content
+            margin: 0.05,  // increase?
+
+            // Bounds for smallest/largest possible scale to apply to content
+            minScale: 0.5,
+            maxScale: 5.0,
+
+            // Push each slide change to the browser history
+            history: true,
+            // Enable keyboard shortcuts for navigation
+            keyboard: true,
+
+            // Vertical centering of slides
+            center: true,
+
+            // Enables touch navigation on devices with touch input
+            touch: true,
+
+            // Loop the presentation
+            loop: false,
+            // Flags if the presentation is running in an embedded mode,
+            // i.e. contained within a limited portion of the screen
+            embedded: false,
+
+            // Number of milliseconds between automatically proceeding to the
+            // next slide, disabled when set to 0, this value can be overwritten
+            // by using a data-autoslide attribute on your slides
+            autoSlide: 0,
+
+            // Stop auto-sliding after user input
+            autoSlideStoppable: true,
+
+            // Enable slide navigation via mouse wheel
+            mouseWheel: false,
+
+            // Hides the address bar on mobile devices
+            hideAddressBar: true,
+
+            // Opens links in an iframe preview overlay
+            previewLinks: false,
+
+            // Slide transition
+            transition: 'none', // default/none/slide/concave/convex/zoom
+
+            // Transition speed
+            transitionSpeed: 'default', // default/fast/slow
+
+            // Transition style for full page slide backgrounds
+            backgroundTransition: 'none', // default/none/slide/concave/convex/zoom
+
+            // Number of slides away from the current that are visible
+            viewDistance: 3,
+
+            // Parallax background image
+            //parallaxBackgroundImage: '', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'"
+
+            // Parallax background size
+            //parallaxBackgroundSize: '' // CSS syntax, e.g. "2100px 900px"
+
+            chalkboard: {
+                boardmarkerWidth: 3,
+                chalkWidth: 7,
+                chalkEffect: 1.0,
+                src: null,
+                readOnly: undefined,
+                toggleChalkboardButton: true,
+                toggleNotesButton: true,
+                boardmarkers : [
+                    { color: 'rgba(220,20,60,1)', cursor: 'url(' + path + 'img/boardmarker-red.png), auto'},
+                    { color: 'rgba(255,140,0,1)', cursor: 'url(' + path + 'img/boardmarker-orange.png), auto'},
+                ]
+            },
+
+            math: {
+                mathjax: 'https://cdn.jsdelivr.net/gh/mathjax/mathjax@2.7.8/MathJax.js',
+                config: 'TeX-AMS_HTML-full',
+                // pass other options into `MathJax.Hub.Config()`
+                TeX: { Macros: { RR: "{\\bf R}" } }
+            },
+
+            plugins: [
+                RevealMath,
+                RevealHighlight,
+                RevealMarkdown,
+                RevealChalkboard
+            ]
+        });
+    </script>
+</body>
+</html>
