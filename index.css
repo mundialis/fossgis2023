@@ -49,7 +49,7 @@ main {
 }
 
 .flexchild {
-    width: 12%;
+    width: 17%;
     min-width: 8em;
     text-align: center;
     display: flex;
@@ -85,6 +85,10 @@ main {
 .flexchild:nth-child(6) {
     /* background-color: #eb7f00; */
     background-image: url('resources/img/sentinelMosaic-art_040302.png');
+}
+.flexchild:nth-child(7) {
+    /* background-color: #eb7f00; */
+    background-image: url('resources/img/sentinelMosaic-art_080403.png');
 }
 
 .flexchildhalf {
