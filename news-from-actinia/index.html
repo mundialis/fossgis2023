@@ -253,18 +253,18 @@ graph TD;
 <p>Allow users to create and delete mapsets by @juleshaas and @anikaweinmann in <a href="https://github.com/mundialis/actinia_core/pull/374">#374</a> [4.2.1]
 </p>
 <hr>
-<p>Endpoint configuration by @anikaweinmann in <a href="https://github.com/mundialis/actinia_core/pull/357">#357</a> [4.1.0]
+<p><b>Endpoint configuration</b> by @anikaweinmann in <a href="https://github.com/mundialis/actinia_core/pull/357">#357</a> [4.1.0]
 </p>
 <hr>
 <p>Add more modules and configuration to add additinal modules in config by @anikaweinmann in <a href="https://github.com/mundialis/actinia_core/pull/341">#341</a> [4.0.1]</p>
 <hr>
-<p><b>Update to GRASS GIS 8 by @neteler in [4.0.1]</b></p>
+<p><b>Update to GRASS GIS 8</b> by @neteler in [4.0.1]</p>
 <hr>
 <p>Update alpine in docker by @mmacata in <a href="https://github.com/mundialis/actinia_core/pull/343">#343</a> and <a href"https://github.com/mundialis/actinia_core/pull/346">#346</a> in [4.0.1]</p></p>
 <hr>
 <p>Refactor REST endpoints by @mmacata in <a href="https://github.com/mundialis/actinia_core/pull/320">#320</a> and <a href="https://github.com/mundialis/actinia_core/pull/322">#322</a> in [4.0.0]</p>
 <hr>
-<p>Move apidocs by @anikaweinmann in <a href="https://github.com/mundialis/actinia_core/pull/337">#337</a> [4.0.0] - This is a major release because it breaks the actinia python API. Plugins were already adjusted accordingly. The HTTP REST API is not affected and moved (with this release completely) to [actinia-api](https://github.com/mundialis/actinia-api).
+<p><b>Move apidocs</b> by @anikaweinmann in <a href="https://github.com/mundialis/actinia_core/pull/337">#337</a> [4.0.0] - This is a major release because it breaks the actinia python API. Plugins were already adjusted accordingly. The HTTP REST API is not affected and moved (with this release completely) to [actinia-api](https://github.com/mundialis/actinia-api).
 </p>
 <hr>
 <p>Importer resampling and resolution by @juleshaas in <a href="https://github.com/mundialis/actinia_core/pull/298">#298</a> [3.2.0]</p>
@@ -301,7 +301,7 @@ graph LR
     tile2(tile_02)
     tile3(tile_03)
     end
-    subgraph actinia-parallel-pluginAuthenti
+    subgraph actinia-parallel-plugin
     comp1(brightness_01)
     comp2(brightness_02)
     comp3(brightness_03)
@@ -461,6 +461,8 @@ Mit `patch_merge.json`:
 <li><a href="https://github.com/actinia-org/actinia-statistic-plugin/">actinia-statistic-plugin</a></li>
 <br>
 <li><a href="https://github.com/actinia-org/actinia-example-plugin/">actinia-example-plugin</a></li>
+<br>
+<li><a href="https://github.com/Open-EO/openeo-grassgis-driver">openeo-grassgis-drives</a></li>
 </ul>
 
 </div>
@@ -523,21 +525,23 @@ Erzeugung eines STAC Items für eine Ergebnis-Rasterkarte, Instanz gleich Nutzer
 
     {
         "list": [
-        {
-            "module": "r.slope.aspect",
-            ...
-            "outputs": [
             {
-                "param": "slope",
-                "value": "elev_ned_30m_slope",
-                "metadata": {
-                "format": "STAC",
-                "type": "metadata",
-                "output_layer": "stac"
-                }
+                "module": "r.slope.aspect",
+                ...
+                "outputs": [
+                    {
+                        "param": "slope",
+                        "value": "elevation",
+                        "export": {
+                            "format": "GTiff",
+                            "type": "raster"
+                        },
+                        "metadata":{
+                            "format": "STAC"
+                        }
+                    }
+                ]
             }
-            ]
-        }
         ],
         "version": "1"
     }
@@ -715,7 +719,7 @@ Das Template wird in actinia gespeichert und kann nun wiederum als Prozess aufge
 <div id="clients-3" class="step slide markdown features largecode" data-rel-x="0" data-rel-y="22000" data-scale="20">
 ##### actinia clients - actinia-python-client
 
-    from actinia import actinia
+    from actinia import Actinia
 
     actinia_mundialis = Actinia()
     actinia_mundialis.get_version()
@@ -835,7 +839,7 @@ graph TD
 <h4>Upcoming 2022</h4>
 <ul><li>STAC Integration (bereits in Arbeit) CHECK</li>
 <li>Benutzerauthentifizierung über Keycloak CHECK</li>
-<li>Module thematisch umstrukturieren</li>
+<li>Module thematisch umstrukturieren WIP</li>
 <li>Aufteilung des Codes in Auftragsempfänger und Auftragsausführer CHECK</li>
 <li>Automatisierte Paralellisierung WIP</li>
 <li>Auslagerung der kompletten API docs / docker builds in eigentständige Repositories CHECK</li>
@@ -844,13 +848,14 @@ graph TD
 </div>
 
 <div class="right">
-<h4>Upcoming 2023</h4>
+<h4>Upcoming</h4>
 <ul><li>Automatisierte Paralellisierung WIP</li>
-<li>actinia-parallel + tiling fertig stellen</li>
-<li>Module thematisch umstrukturieren</li>
-<li></li>
-<li></li>
-<li></li>
+<li>Module thematisch umstrukturieren WIP</li>
+<li>actinia-parallel-plugin und actinia-tiling-plugin fertig stellen</li>
+<li>Automatisiertes Starten von Workern</li>
+<li>Job Queue per User</li>
+<li>Weiterentwicklung der actinia clients </li>
+<li>(OGC API processes)</li>
 <li>...</li>
 </ul>
 
@@ -885,8 +890,6 @@ graph TD
 <!-- <li><a href="https://github.com/actinia-org/actinia-jupyter/">actinia-jupyter</a></li>
 <li><a href="https://github.com/actinia-org/actinia-python-client/">actinia-python-client</a></li>
 <li><a href="https://github.com/actinia-org/ace/">ace</a></li>
-<li><a href="https://github.com/actinia-org/exporter/">exporter</a></li>
-<li><a href="https://github.com/actinia-org/importer/">importer</a></li>
 <li><a href="https://github.com/actinia-org/helm-charts/tree/main/charts">helm charts</a></li>
 <li><a href="https://github.com/Open-EO/openeo-grassgis-driver">openeo-grassgis-drives</a></li>
-<li><a href="https://github.com/actinia-org/actinia-docker/">actinia-docker</a></li> -->
+ -->
